@@ -3,8 +3,11 @@ const Article = require('../models/article')
 const User=require('../models/user')
 const router = express.Router();
 const { isAuth } = require('../middlewares/auth')
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' }); // Set the destination folder
 
-router.post('/create-post', isAuth, async (req, resp) => {
+
+router.post('/create-post',upload.single('image'),  isAuth, async (req, resp) => {
     const { title, content } = req.body;
     const { user: author } = req
     console.log(author)
@@ -13,10 +16,12 @@ router.post('/create-post', isAuth, async (req, resp) => {
         let article = new Article({
             title,
             content,
-            author
+            author,
+            imageURL: req.file ? req.file.path : null, // Save the file path or URL
         });
         await article.save();
-        resp.status(200).json({ success: true, message: "Article Created Successfully" });
+        resp.status(200).json({ success: true, 
+         });
 
     } catch (error) {
         resp.status(500).json({ success: false, message: error.message });
