@@ -30,9 +30,10 @@ router.post('/create-post',upload.single('image'),  isAuth, async (req, resp) =>
 
 router.get('/articles', isAuth, async (req, resp) => {
     try {
+        console.log(req.headers.authorization)
         
         const Articles = await Article.find().populate('author');
-        console.log(Articles)
+       
         // Extract only the necessary information for each article
         const formattedArticles = Articles.map(article => ({
             _id: article._id,

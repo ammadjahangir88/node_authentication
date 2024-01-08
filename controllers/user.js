@@ -29,3 +29,8 @@ exports.userSignIn = async (req, resp) =>{
 
     resp.json({success:true, user,token})
 }
+
+exports.userSignOut= async (req,res)=>{
+  
+  res.json({success: true, message: "Sign-out initiated. Please clear the token on the client side."});
+}
