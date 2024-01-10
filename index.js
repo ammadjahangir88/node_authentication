@@ -5,7 +5,7 @@ const User= require('./models/user')
 const app=express()
 const userRouter=require('./routes/user')
 const articleRouter=require('./routes/article')
-
+const commentRouter=require('./routes/comment')
 const cors = require('cors');
 
 
@@ -29,10 +29,12 @@ const cors = require('cors');
 
 // Enable CORS for all routes
 app.use(cors());
+app.use('/uploads', express.static('uploads'));
 app.use(express.json())
 
 app.use(userRouter)
 app.use(articleRouter)
+app.use(commentRouter)
 app.get('/',(req,resp)=>{
     resp.send("Hello World")
 
