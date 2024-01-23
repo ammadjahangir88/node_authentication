@@ -36,7 +36,7 @@ app.use(userRouter)
 app.use(articleRouter)
 app.use(commentRouter)
 app.get('/',(req,resp)=>{
-    resp.send("Hello Mudassar Bhai jaan")
+    resp.send("Hello Mohsin Pagal")
 
 })
 app.listen(8000,()=>{
